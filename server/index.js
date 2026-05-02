@@ -1,13 +1,17 @@
 const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
+const path = require("path");
 require("dotenv").config();
 
 const app = express();
 app.use(cors());
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const STEAM_API_KEY = process.env.STEAM_API_KEY;
+
+// Serve static client files
+app.use(express.static(path.join(__dirname, "../client")));
 
 // Resolve vanity → steamid
 app.get("/resolve", async (req, res) => {
@@ -19,8 +23,8 @@ app.get("/resolve", async (req, res) => {
       {
         params: {
           key: STEAM_API_KEY,
-          vanityurl: vanity
-        }
+          vanityurl: vanity,
+        },
       }
     );
 
@@ -42,8 +46,8 @@ app.get("/games/:steamid", async (req, res) => {
         params: {
           key: STEAM_API_KEY,
           steamid,
-          include_appinfo: true
-        }
+          include_appinfo: true,
+        },
       }
     );
 
@@ -52,6 +56,11 @@ app.get("/games/:steamid", async (req, res) => {
     console.error(err);
     res.status(500).json({ error: "Failed to fetch games" });
   }
+});
+
+// Catch-all: serve index.html for any unmatched route
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/index.html"));
 });
 
 app.listen(PORT, () => {
