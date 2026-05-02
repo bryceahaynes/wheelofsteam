@@ -216,6 +216,12 @@ function drawWheel() {
   if (!num) return;
   const arc = (2 * Math.PI) / num;
   ctx.clearRect(0, 0, 500, 500);
+
+  // Solid background fill to prevent flicker through transparent gaps
+  ctx.fillStyle = "#0b1120";
+  ctx.beginPath();
+  ctx.arc(250, 250, 250, 0, 2 * Math.PI);
+  ctx.fill();
   for (let i = 0; i < num; i++) {
     const start = i * arc;
     ctx.beginPath();
