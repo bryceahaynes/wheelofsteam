@@ -11,40 +11,54 @@
 </head>
 <body>
 
-<div class="container">
-  <header>
-    <h1>Wheel of Steam</h1>
-    <p class="subtitle">Spin to decide what to play next</p>
-  </header>
+  <!-- Layer A: collection of all game covers -->
+  <div id="bg-grid-a"></div>
 
-  <div class="controls">
-    <input id="profile" placeholder="Paste your Steam profile URL" />
-    <div class="btn-row">
-      <button onclick="load()" id="loadBtn">Load Games</button>
-      <button onclick="spin()" id="spinBtn">Spin</button>
+  <!-- Layer B: winner game images (fades in over A) -->
+  <div id="bg-grid-b"></div>
+
+  <!-- Dark overlay -->
+  <div id="bg-overlay"></div>
+
+  <div class="container">
+    <header>
+      <h1>Wheel of Steam</h1>
+      <p class="subtitle">Spin to decide what to play next</p>
+    </header>
+
+    <div class="controls">
+      <input id="profile" placeholder="Paste your Steam profile URL" />
+      <div class="btn-row">
+        <button onclick="load()" id="loadBtn">Load Games</button>
+        <button onclick="spin()" id="spinBtn">Spin</button>
+      </div>
     </div>
-  </div>
 
-  <div class="wheel-wrap">
-    <div class="wheel-container">
-      <div class="pointer"></div>
-      <canvas id="wheel" width="500" height="500"></canvas>
+    <div class="wheel-wrap">
+      <div class="wheel-container">
+        <div class="pointer"></div>
+        <canvas id="wheel" width="500" height="500"></canvas>
+      </div>
     </div>
+
+    <div class="current">
+      <span class="label">Now Landing On</span>
+      <h2 id="currentGame">—</h2>
+    </div>
+
+    <div id="result"></div>
+
+    <footer>
+      <p>Let's get in touch!</p>
+      <a href="mailto:info@wheelofsteam.com">info@wheelofsteam.com</a>
+    </footer>
   </div>
 
-  <div class="current">
-    <span class="label">Now Landing On</span>
-    <h2 id="currentGame">—</h2>
-  </div>
+  <label class="art-toggle">
+    <input type="checkbox" id="disableArt" />
+    <span>Disable background art</span>
+  </label>
 
-  <div id="result"></div>
-
-  <footer>
-    <p>Let's get in touch!</p>
-    <a href="mailto:info@wheelofsteam.com">info@wheelofsteam.com</a>
-  </footer>
-</div>
-
-<script src="app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
