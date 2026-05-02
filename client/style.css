@@ -138,7 +138,7 @@ canvas {
   height: 0;
   border-left: 13px solid transparent;
   border-right: 13px solid transparent;
-  border-top: 22px solid var(--gold);
+  border-top: 22px solid var(--accent);
   z-index: 10;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
 }
