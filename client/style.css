@@ -242,19 +242,16 @@ canvas {
 
 /* ── Art toggle ── */
 .art-toggle {
-  position: fixed;
-  bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   cursor: pointer;
   font-size: 0.8rem;
   color: var(--muted);
   letter-spacing: 0.04em;
   user-select: none;
+  margin-top: 0.75rem;
 }
 .art-toggle input[type="checkbox"] {
   width: 14px;
@@ -262,9 +259,6 @@ canvas {
   accent-color: var(--accent);
   cursor: pointer;
   flex-shrink: 0;
-  padding: 0;
-  border: none;
-  background: none;
 }
 .art-toggle:hover { color: var(--text); }
 

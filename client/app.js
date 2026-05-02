@@ -56,6 +56,10 @@ function tryLoad(url) {
   });
 }
 
+function artDisabled() {
+  return document.getElementById("disableArt").checked;
+}
+
 // Preload all header images for the collection
 async function preloadCollectionImages(gameList) {
   const results = await Promise.all(
@@ -102,6 +106,7 @@ async function bgShowCollection(imageUrls) {
 }
 
 async function bgFadeToWinner(appid) {
+  if (artDisabled()) return;
   const winnerUrls = await fetchWinnerImages(appid);
   if (!winnerUrls.length) return;
 
@@ -118,13 +123,21 @@ function bgResetToCollection() {
 }
 
 // ── Vanity extraction ──────────────────────────────────────────
-function extractVanity(url) {
+function extractVanity(input) {
+  // Full URL
   try {
-    const u = new URL(url);
+    const u = new URL(input);
     const parts = u.pathname.split("/").filter(Boolean);
     if (parts[0] === "id") return parts[1];
     if (parts[0] === "profiles") return parts[1];
   } catch (e) {}
+
+  // Plain text — just a username or steamid (no slashes, no spaces)
+  const trimmed = input.trim();
+  if (trimmed && !trimmed.includes("/") && !trimmed.includes(" ")) {
+    return trimmed;
+  }
+
   return null;
 }
 
@@ -160,13 +173,19 @@ async function load() {
       return;
     }
 
-    if (games.length > 150) {
-      games = games.sort((a, b) => b.playtime_forever - a.playtime_forever).slice(0, 150);
-    }
 
     document.getElementById("result").textContent = "Loading game art...";
     angle = 0;
     drawWheel();
+
+    if (artDisabled()) {
+      // Skip image loading entirely
+      loadedImageUrls = [];
+      document.getElementById("result").textContent = `${games.length} games loaded — hit Spin.`;
+      gridReady = true;
+      setSpin(true);
+      return;
+    }
 
     loadedImageUrls = await preloadCollectionImages(games);
 
@@ -232,8 +251,26 @@ function spin() {
   spinning = true;
   setSpin(false);
   document.getElementById("result").textContent = "";
-  bgResetToCollection();
 
+  // If art is enabled but wasn't loaded (was disabled during load), load now and wait
+  if (!artDisabled() && loadedImageUrls.length === 0) {
+    document.getElementById("result").textContent = "Loading game art...";
+    preloadCollectionImages(games).then(async urls => {
+      loadedImageUrls = urls;
+      if (urls.length > 0) {
+        await bgShowCollection(urls);
+        await sleep(800);
+      }
+      beginSpin();
+    });
+    return;
+  }
+
+  bgResetToCollection();
+  beginSpin();
+}
+
+function beginSpin() {
   let velocity = Math.random() * 0.6 + 0.9;
   const friction = 0.992;
   let fadedOut = false;
@@ -245,7 +282,7 @@ function spin() {
     updateCurrent();
 
     // Fade collection out as wheel slows below threshold
-    if (!fadedOut && velocity < 0.35) {
+    if (!fadedOut && velocity < 0.02) {
       fadedOut = true;
       document.getElementById("bg-grid-a").classList.remove("active");
     }
