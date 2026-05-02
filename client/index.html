@@ -3,31 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Steam Wheel</title>
+  <title>Wheel of Steam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <div class="container">
-  <h1>🎮 Steam Wheel</h1>
+  <header>
+    <h1>Wheel of Steam</h1>
+    <p class="subtitle">Spin to decide what to play next</p>
+  </header>
 
   <div class="controls">
-    <input id="profile" placeholder="Paste Steam profile URL (e.g. https://steamcommunity.com/id/username)" />
-    <button onclick="load()">Load Games</button>
-    <button onclick="spin()">Spin</button>
+    <input id="profile" placeholder="Paste your Steam profile URL" />
+    <div class="btn-row">
+      <button onclick="load()" id="loadBtn">Load Games</button>
+      <button onclick="spin()" id="spinBtn">Spin</button>
+    </div>
   </div>
 
-  <div class="wheel-container">
-    <div class="pointer"></div>
-    <canvas id="wheel" width="500" height="500"></canvas>
+  <div class="wheel-wrap">
+    <div class="wheel-container">
+      <div class="pointer"></div>
+      <canvas id="wheel" width="500" height="500"></canvas>
+    </div>
   </div>
 
   <div class="current">
-    <span>Now Landing On:</span>
+    <span class="label">Now Landing On</span>
     <h2 id="currentGame">—</h2>
   </div>
 
-  <h2 id="result"></h2>
+  <div id="result"></div>
+
+  <footer>
+    <p>Let's get in touch!</p>
+    <a href="mailto:info@wheelofsteam.com">info@wheelofsteam.com</a>
+  </footer>
 </div>
 
 <script src="app.js"></script>
