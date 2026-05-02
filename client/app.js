@@ -55,8 +55,6 @@ async function load() {
 
     console.log("Total games:", games.length);
 
-    // Limit for performance — top 150 by playtime
-
     document.getElementById("result").textContent = `${games.length} games loaded! Hit Spin.`;
     angle = 0;
     drawWheel();
@@ -151,5 +149,8 @@ function pickWinner() {
   const slice = 360 / num;
   const index = Math.floor((360 - degrees) / slice) % num;
 
-  document.getElementById("result").textContent = "🎯 Play: " + games[index].name;
+  const result = document.getElementById("result");
+  const appid = games[index].appid;
+  const name = games[index].name;
+  result.innerHTML = `<span class="result-label">Play: </span><a class="result-game" href="https://store.steampowered.com/app/${appid}" target="_blank" rel="noopener">${name}</a>`;
 }
