@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Steam Wheel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>🎮 Steam Wheel</h1>
+
+  <div class="controls">
+    <input id="profile" placeholder="Paste Steam profile link">
+    <button onclick="load()">Load Games</button>
+    <button onclick="spin()">Spin</button>
+  </div>
+
+  <div class="wheel-container">
+    <div class="pointer"></div>
+    <canvas id="wheel" width="500" height="500"></canvas>
+  </div>
+
+  <div class="current">
+    <span>Now Landing On:</span>
+    <h2 id="currentGame">—</h2>
+  </div>
+
+  <h2 id="result"></h2>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

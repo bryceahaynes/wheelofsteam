@@ -1,0 +1,73 @@
+body {
+  margin: 0;
+  background: #0f172a;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.container {
+  padding: 30px;
+}
+
+.controls {
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 10px;
+  width: 300px;
+  border-radius: 6px;
+  border: none;
+  margin-right: 10px;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  background: #22c55e;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #16a34a;
+}
+
+.wheel-container {
+  position: relative;
+  display: inline-block;
+}
+
+canvas {
+  border-radius: 50%;
+  box-shadow: 0 0 40px rgba(0,0,0,0.5);
+}
+
+.pointer {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 20px solid #facc15; /* flipped */
+}
+
+.current {
+  margin-top: 20px;
+}
+
+#currentGame {
+  color: #facc15;
+}
+
+#result {
+  margin-top: 20px;
+  font-size: 24px;
+  color: #22c55e;
+}
