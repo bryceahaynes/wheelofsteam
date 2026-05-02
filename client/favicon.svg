@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Dark background circle -->
+  <circle cx="32" cy="32" r="32" fill="#0b1120"/>
+
+  <!-- Wheel segments (8 alternating slices) -->
+  <g transform="translate(32,32)">
+    <!-- Slice 1 -->
+    <path d="M0,0 L0,-22 A22,22 0 0,1 15.56,-15.56 Z" fill="#1e293b"/>
+    <!-- Slice 2 -->
+    <path d="M0,0 L15.56,-15.56 A22,22 0 0,1 22,0 Z" fill="#334155"/>
+    <!-- Slice 3 -->
+    <path d="M0,0 L22,0 A22,22 0 0,1 15.56,15.56 Z" fill="#1e293b"/>
+    <!-- Slice 4 -->
+    <path d="M0,0 L15.56,15.56 A22,22 0 0,1 0,22 Z" fill="#334155"/>
+    <!-- Slice 5 -->
+    <path d="M0,0 L0,22 A22,22 0 0,1 -15.56,15.56 Z" fill="#1e293b"/>
+    <!-- Slice 6 -->
+    <path d="M0,0 L-15.56,15.56 A22,22 0 0,1 -22,0 Z" fill="#334155"/>
+    <!-- Slice 7 -->
+    <path d="M0,0 L-22,0 A22,22 0 0,1 -15.56,-15.56 Z" fill="#1e293b"/>
+    <!-- Slice 8 -->
+    <path d="M0,0 L-15.56,-15.56 A22,22 0 0,1 0,-22 Z" fill="#334155"/>
+
+    <!-- Wheel border ring -->
+    <circle cx="0" cy="0" r="22" fill="none" stroke="#22c55e" stroke-width="1.5"/>
+
+    <!-- Center hub -->
+    <circle cx="0" cy="0" r="5" fill="#0b1120" stroke="#22c55e" stroke-width="1.5"/>
+
+    <!-- Spoke lines -->
+    <line x1="0" y1="-5" x2="0" y2="-22" stroke="#22c55e" stroke-width="0.8" opacity="0.4"/>
+    <line x1="0" y1="5" x2="0" y2="22" stroke="#22c55e" stroke-width="0.8" opacity="0.4"/>
+    <line x1="-5" y1="0" x2="-22" y2="0" stroke="#22c55e" stroke-width="0.8" opacity="0.4"/>
+    <line x1="5" y1="0" x2="22" y2="0" stroke="#22c55e" stroke-width="0.8" opacity="0.4"/>
+  </g>
+
+  <!-- Gold pointer triangle at top, pointing down -->
+  <polygon points="32,13 28,4 36,4" fill="#facc15"/>
+
+  <!-- Outer ring glow -->
+  <circle cx="32" cy="32" r="30" fill="none" stroke="#22c55e" stroke-width="1" opacity="0.3"/>
+</svg>
